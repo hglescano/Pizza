@@ -1,1 +1,118 @@
-<p>pizza works!</p>
+<div>
+    <div class="col-md-5">
+        <div class="card">
+            <div class="card-header">
+                Administrar Pizza
+            </div>
+            <div class="card-body">
+                <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
+                    data-target="#crearPizza">Nueva Pizza</button>
+            </div>
+            <div class="modal fade" id="crearPizza" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Crear Pizza</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form [formGroup]="form">
+                                <div class="form-group">
+                                    <input type="text" name="Nombre Pizza" formControlName="txtpiz_name"
+                                        placeholder="Insertar Nombre Pizza" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="Descripcion Pizza" formControlName="txtpiz_description"
+                                        placeholder="Insertar Descripcion Pizza" class="form-control">
+                                </div>
+                            
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-primary" (click)="crearPizza()"
+                                        data-dismiss="modal">Crear</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <table class="table table-bordered table-hover bg-white">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripcin</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let i of pizza">
+
+                    <td>
+                        {{i.piz_name}}
+                    </td>
+                    <td>
+                        {{i.piz_description}}
+                    </td>
+                    <td>
+                        {{i.piz_id}}
+                    </td>
+                    <td class="d-flex justify-content-center">
+                        <a class="btn btn-danger" (click)="eliminarPizza(i.piz_id)">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                        <a class="btn btn-success" data-toggle="modal" data-target="#editarPizza"
+                            (click)="infoUpdatePizza(i.piz_id,i.piz_name,i.piz_description,i.piz_estado)">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <div class="modal fade" id="editarPizza" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Editar Pizza</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form [formGroup]="form">
+                                            <div class="form-group">
+                                                <label>
+                                                    <h6>Id Pizza:{{informacionPizza.piz_id}}</h6>
+                                                </label>
+                                                
+                                            </div>
+                                            <div>
+                                                <input type="text" name="Nombre Pizza" formControlName="txtpiz_name"
+                                                    placeholder="{{informacionPizza.piz_name}}" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="Descripcion Pizza" formControlName="txtpiz_description"
+                                                    placeholder="Descripcion: {{informacionPizza.piz_description}}" class="form-control">
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Cerrar</button>
+                                                <button type="button" class="btn btn-primary"
+                                                    (click)="actualizarPizza(informacionPizza.piz_id)"
+                                                    data-dismiss="modal">Actualizar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
