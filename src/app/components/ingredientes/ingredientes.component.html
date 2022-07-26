@@ -1,0 +1,123 @@
+<p>ingredients works!</p>
+
+<div>
+    <div class="col-md-5">
+        <div class="card">
+            <div class="card-header">
+                Administrar INGREDIENTES
+            </div>
+            <div class="card-body">
+                <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
+                    data-target="#crearIngredients">Nueva Ingredientes</button>
+            </div>
+            <div class="modal fade" id="crearIngredients" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Crear Ingredientes</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form [formGroup]="form">
+                                <div class="form-group">
+                                    <input type="text" name="Nombre ingrediente" formControlName="txtname"
+                                        placeholder="Insertar nombre ingrediente" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="Calorias ingrediente" formControlName="txtcalories"
+                                        placeholder="Insertar calorias pizza" class="form-control">
+                                </div>
+                                
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-primary" (click)="crearIngredientes()"
+                                        data-dismiss="modal">Crear</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <table class="table table-bordered table-hover bg-white">
+            <thead>
+                <tr>
+                    <th>Piz ID</th>
+                    <th>Nombre</th>
+                    <th>Calorias</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let i of ingredientes">
+                    <td>
+                        {{i.ing_id}}
+                    </td>
+                    <td>
+                        {{i.ing_description}}
+                    </td>
+                    <td>
+                        {{i.ing_calories}}
+                    </td>
+                    <td>
+                        {{i.ing_estado}}
+                    </td>
+                    <td class="d-flex justify-content-center">
+                        <a class="btn btn-danger" (click)="eliminarIngredientes(i.ing_id)">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                        <a class="btn btn-success" data-toggle="modal" data-target="#editarIngrediente"
+                            (click)="infoUpdateIngredientes(i.ing_id,i.ing_description,i.ing_calories,i.ing_estado)">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <div class="modal fade" id="editarIngrediente" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Editar ingredients</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form [formGroup]="form">
+                                            <div class="form-group">
+                                                <label>
+                                                    <h6>Id Ingredientes:{{informacionIngredientes.ing_id}}</h6>
+                                                </label>
+                                                <input type="text" name="Nombre ingredients" formControlName="txtname"
+                                                    placeholder="{{informacionIngredientes.ing_description}}" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="calories ingredientes" formControlName="txtcalories"
+                                                    placeholder="{{informacionIngredientes.ing_calories}}" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="estado ingredientes" formControlName="txtstate"
+                                                    placeholder="{{informacionIngredientes.ing_estado}}" class="form-control">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Cerrar</button>
+                                                <button type="button" class="btn btn-primary"
+                                                    (click)="actualizarIngredientes(informacionIngredientes.ing_id)"
+                                                    data-dismiss="modal">Actualizar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
