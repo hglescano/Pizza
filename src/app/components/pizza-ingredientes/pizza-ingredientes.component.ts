@@ -69,6 +69,39 @@ export class PizzaIngredientesComponent implements OnInit {
       }
     )
   }
+  public eliminarPizzaIngredientes(piz_ing_id:any){   
+    this.PizzaIngredientesService.deletePizzaIngredientes(piz_ing_id).subscribe(
+      respuesta=>{
+        console.log('Pizza Ingredientes eliminada correctamente');
+        this.cargarPizzaingredientes()
+      }
+    )
+  }
+  public infoUpdatePizzaIngredientes(piz_ing_id:any,piz_id:any,ing_id:any,piz_ing_count:any,piz_ing_estado:any){
+    this.informacionPizza.piz_ing_id=piz_ing_id,
+    this.informacionPizza.piz_id=piz_id,
+    this.informacionPizza.ing_id=ing_id,
+    this.informacionPizza.piz_ing_count=piz_ing_count,
+    this.informacionPizza.piz_ing_estado=piz_ing_estado;
+    
+  }
+
+  public actualizarPizzaIngredientes(piz_ing_id:any){
+    this.PizzaIngredientesService.putUpdatePizzaIngredientes({
+      piz_ing_id:piz_ing_id,
+      piz_id:this.form.value.txtpiz_id,
+      ing_id:this.form.value.txting_id,
+      piz_inn_count:this.form.value.txtpiz_ing_count,
+      piz_ing_estado:this.form.value.txtpiz_ing_estado,
+
+    }).subscribe(
+      respuesta=>{
+        console.log('Pizza Ingredientes actualizada correctamente');
+        this.form.reset()
+        this.cargarPizzaingredientes()
+      }
+    )
+  }
 
 
   
