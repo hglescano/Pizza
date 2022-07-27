@@ -6,11 +6,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { PizzaComponent } from './components/pizza/pizza.component';
+import { IngredientesComponent } from './components/ingredientes/ingredientes.component';
+import { PizzaIngredientesComponent } from './components/pizza-ingredientes/pizza-ingredientes.component'; 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PizzaComponent
+    PizzaComponent,
+    IngredientesComponent,
+    PizzaIngredientesComponent
   ],
   imports: [
     BrowserModule,

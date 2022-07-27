@@ -7,22 +7,22 @@ export class PizzaService {
 
   constructor(private http: HttpClient) { }
   public getPizza(){
-    const url= `http://localhost:4000/pizza`
+    const url= `https://pizzaangular.herokuapp.com/pizza`
     return this.http.get(url)
   }
 
   public postCreatePizza(body:any){
-    const url= `http://localhost:4000/pizza`
+    const url= `https://pizzaangular.herokuapp.com/pizza`
     return this.http.post(url,body)
   }
 
   public putUpdatePizza(body:any){
-    const url= `http://localhost:4000/pizza`
+    const url= `https://pizzaangular.herokuapp.com/pizza`
     return this.http.put(url,body)
   }
 
   public deletePizza(piz_id:any){
-    const url= `http://localhost:4000/pizza/?piz_id=`+piz_id
+    const url= `https://pizzaangular.herokuapp.com/pizza/${piz_id}`
     return this.http.delete(url)
   }
 }

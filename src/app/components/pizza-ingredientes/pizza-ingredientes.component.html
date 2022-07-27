@@ -1,0 +1,174 @@
+<div>
+    <div class="col-md-5">
+        <div class="card">
+            <div class="card-header">
+                Administrar Pizza
+            </div>
+            <div class="card-body">
+                <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
+                    data-target="#crearPizzaIngredientes">Nueva Pizza Ingredientes</button>
+            </div>
+            <div class="modal fade" id="crearPizzaIngredientes" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Crear Pizza Ingredientes</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                         <form [formGroup]="form"> 
+                                
+                                <div class="form-group">
+                                    <div class="form-control">
+                                        <label class="input-group-text" for="inputGroupSelect01">Pizza</label>
+                                        <select name="form-select" id="inputGroupSelect01" formControlName="pizzaSelected">
+                                            <option *ngFor="let p of pizza " [value]="p.piz_id">{{p.piz_name}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-control">
+                                        <label class="input-group-text" for="inputGroupSelect01">Ingredientes</label>
+                                    </div>
+                                    <select name="form-select" id="inputGroupSelect01" formControlName="ingredientesSelected">
+                                        <option *ngFor="let i of ingredientes " [value]="i.ing_id">{{i.ing_description}}
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" name="Cantidad Pizza Ingredientes" formControlName="txtpiz_ing_count"
+                                        placeholder="Cantidad Pizza Ingredientes" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" name="Estado Pizza Ingredientes" formControlName="txtpiz_ing_estado"
+                                        placeholder="Estado Pizza Ingredientes" class="form-control">
+                                </div>
+
+                               
+                            
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-primary" (click)="crearPizzaIngredientes()"
+                                        data-dismiss="modal">Crear</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <table class="table table-bordered table-hover bg-white">
+            <thead>
+                <tr>
+                    <th>ID Ingrediente Pizza</th>
+                    <th>ID Pizza</th>
+                    <th>ID Ingrediente</th>
+                    <th>ID Ingredientes Count</th>
+                    <th>Acciones</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let i of pizzaIngredientes">
+
+                    <td>
+                        {{i.piz_ing_id}}
+                    </td>
+                    <td>
+                        {{i.piz_name}}
+                    </td>
+                    <td>
+                        {{i.ing_description}}
+                    </td>
+                    <td>
+                        {{i.piz_ing_count}}
+                    </td>
+                    <td class="d-flex justify-content-center">
+                        <a class="btn btn-danger" (click)="eliminarPizzaIngredientes(i.piz_ing_id)">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                        <a class="btn btn-success" data-toggle="modal" data-target="#editarPizzaIngredientes"
+                            (click)="infoUpdatePizzaIngredientes(i.piz_ing_id,i.piz_name,i.ing_description,i.piz_ing_count,i.piz_ing_estado)">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        <div class="modal fade" id="editarPizzaIngredientes" tabindex="-1" role="dialog"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Editar Pizza Ingredientes</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form [formGroup]="form">
+
+                                            <div class="form-group">
+                                                <label>
+                                                    <h6>Id Pizza Ingredientes:{{informacionPizza.piz_ing_id}}</h6>
+                                                </label>
+                                                
+                                            </div>
+
+                                            <div class="form-group">
+                                                <input type="text" name="Id Pizza Ingredientes" formControlName="txtpiz_ing_id"
+                                                placeholder="{{informacionPizza.piz_ing_id}}" class="form-control">
+                                            </div>
+                                          
+                                            <div class="form-group">
+                                                <div class="form-control">
+                                                    <label class="input-group-text" for="inputGroupSelect01">Pizza</label>
+                                                </div>
+                                                <select name="form-select" id="inputGroupSelect01" formControlName="pizzaSelected">
+                                                    <option *ngFor="let p of pizza " [value]="p.piz_id">{{p.piz_name}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-control">
+                                                    <label class="input-group-text" for="inputGroupSelect01">Ingredientes</label>
+                                                </div>
+                                                <select name="form-select" id="inputGroupSelect01" formControlName="ingredientesSelected">
+                                                    <option *ngFor="let i of ingredientes " [value]="i.ing_id">{{i.ing_description}}
+                                                    </option>
+                                                </select>
+                                            </div>
+
+            
+                                            <div class="form-group">
+                                                <input type="text" name="Cantidad Pizza Ingredientes" formControlName="txtpiz_ing_count"
+                                                placeholder="{{informacionPizza.piz_ing_count}}" class="form-control">
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="text" name="Estado Pizza Ingredientes" formControlName="txtpiz_ing_estado"
+                                                placeholder="{{informacionPizza.piz_ing_estado}}" class="form-control">
+                                            </div>
+
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Cerrar</button>
+                                                <button type="button" class="btn btn-primary"
+                                                    (click)="actualizarPizzaIngredientes(informacionPizza.piz_ing_id)"
+                                                    data-dismiss="modal">Actualizar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

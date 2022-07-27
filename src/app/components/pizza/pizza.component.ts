@@ -76,13 +76,11 @@ export class PizzaComponent implements OnInit {
       }
     )
   }
-  public infoUpdatePizza(piz_id:any, piz_name:any, piz_description:any,piz_estado:any){
+  public infoUpdatePizza(piz_id:any, piz_name:any, piz_description:any){
     this.informacionPizza.piz_id=piz_id,
     this.informacionPizza.piz_name=piz_name;
-    this.informacionPizza.piz_description=piz_description;
-    this.informacionPizza.piz_estado=piz_estado;
+    this.informacionPizza.piz_description=piz_description
     
-
     
   }
   
@@ -91,7 +89,7 @@ export class PizzaComponent implements OnInit {
       piz_id:piz_id,
       piz_name:this.form.value.txtpiz_name,
       piz_description:this.form.value.txtpiz_description,
-      piz_estado:this.form.value.txtpiz_estado,
+   
 
     }).subscribe(
       respuesta=>{
